@@ -1,0 +1,37 @@
+name: Create AKS Cluster
+
+on:
+  workflow_dispatch:
+    inputs:
+      resource-group-name:
+        description: 'Azure Resource Group Name'
+        required: true
+      aks-cluster-name:
+        description: 'Azure AKS Cluster Name'
+        required: true
+
+jobs:
+  create-aks-cluster:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Create Resource Group
+      run: |
+        az group create --name ${{ github.event.inputs.resource-group-name }} --location eastus
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Create AKS Cluster
+      run: |
+        az aks create --resource-group ${{ github.event.inputs.resource-group-name }} --name ${{ github.event.inputs.aks-cluster-name }} --node-count 3 --enable-addons monitoring --generate-ssh-keys
+        az aks get-credentials --resource-group ${{ github.event.inputs.resource-group-name }} --name ${{ github.event.inputs.aks-cluster-name }}
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
