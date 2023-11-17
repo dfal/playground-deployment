@@ -31,7 +31,7 @@ jobs:
 
     - name: Create AKS Cluster
       run: |
-        az aks create --resource-group ${{ github.event.inputs.resource-group-name }} --name ${{ github.event.inputs.aks-cluster-name }} --node-count 3 --generate-ssh-keys
+        az aks create --resource-group ${{ github.event.inputs.resource-group-name }} --name ${{ github.event.inputs.aks-cluster-name }} --node-count 1 --generate-ssh-keys
         az aks get-credentials --resource-group ${{ github.event.inputs.resource-group-name }} --name ${{ github.event.inputs.aks-cluster-name }}
       env:
         AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
