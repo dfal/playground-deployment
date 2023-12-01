@@ -19,10 +19,7 @@ spec:
         - name: PORT
           value: "9000"
         - name: OPENWEATHERMAP_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: argocd/openweathermap-api-key
-              key: api_key
+          value: {{ .Values.openweathermap_api_key }}
         resources:
           requests:
             memory: "128Mi"
