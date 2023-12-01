@@ -17,7 +17,7 @@ spec:
         image: dfal/playground-app-web-api:{{ .Values.version }}
         env:
         - name: PORT
-          value: 9000
+          value: "9000"
         - name: OPENWEATHERMAP_API_KEY
           valueFrom:
             secretKeyRef:
