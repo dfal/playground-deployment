@@ -27,6 +27,6 @@ resource "helm_release" "external_nginx" {
   chart            = "ingress-nginx"
   namespace        = "ingress"
   create_namespace = true
-  version          = "4.8.3"
+  version          = "4.8.4"
   values           = [file("${path.module}/values/ingress.yaml")]
 }
