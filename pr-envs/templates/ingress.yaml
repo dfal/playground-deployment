@@ -14,14 +14,14 @@ spec:
       http:
         paths:
           - path: /{{ .Values.version }}/api(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: web-api-service
                 port:
                   number: 9000
           - path: /{{ .Values.version }}(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: web-ui-service
