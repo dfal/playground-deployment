@@ -20,7 +20,7 @@ spec:
                 name: web-api-service
                 port:
                   number: 9000
-          - path: /{{ .Values.version }}/ui(/|$)(.*)
+          - path: /{{ .Values.version }}/(?!api/)(.*)
             pathType: Prefix
             backend:
               service:
