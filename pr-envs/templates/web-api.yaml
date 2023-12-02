@@ -23,16 +23,13 @@ spec:
             secretKeyRef:
               name: openweathermap-api-key
               key: api_key
-              namespace: argocd
         resources:
           requests:
             memory: "128Mi"
             cpu: "100m"
           limits:
-            memory: "1024Mi"
-            cpu: "1000m"
-          ports:
-          - containerPort: 9000
+            memory: "1Gi"
+            cpu: "1"
 
 ---
 apiVersion: v1
