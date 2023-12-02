@@ -30,8 +30,3 @@ spec:
               value: "pr-{{branch}}"
             - name: version
               value: "{{branch}}"
-            - name: openweathermap_api_key
-              valueFrom:
-                secretKeyRef:
-                  name: openweathermap-api-key
-                  key: api_key
