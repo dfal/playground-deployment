@@ -3,7 +3,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
   name: ingress-app-rules
   namespace: {{ .Values.namespace }}
 spec:
@@ -12,14 +13,14 @@ spec:
     - host:
       http:
         paths:
-          - path: /{{ .Values.version }}/api
+          - path: /{{ .Values.version }}/api(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: web-api-service
                 port:
                   number: 9000
-          - path: /{{ .Values.version }}
+          - path: /{{ .Values.version }}(/|$)(.*)
             pathType: Prefix
             backend:
               service:
