@@ -2,6 +2,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: ingress-app-rules
   namespace: {{ .Values.namespace }}
 spec:
@@ -10,14 +12,14 @@ spec:
     - host:
       http:
         paths:
-          - path: /{{ .Values.namespace }}/api
+          - path: /{{ .Values.version }}/api
             pathType: Prefix
             backend:
               service:
                 name: web-api-service
                 port:
                   number: 9000
-          - path: /{{ .Values.namespace }}
+          - path: /{{ .Values.version }}
             pathType: Prefix
             backend:
               service:
