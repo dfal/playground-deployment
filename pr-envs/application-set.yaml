@@ -20,6 +20,8 @@ spec:
         namespace: "pr-{{branch}}"
         server: "https://kubernetes.default.svc"
       project: default
+      syncPolicy:
+        automated: {}
       source:
         path: pr-envs
         repoURL: https://github.com/dfal/playground-deployment
