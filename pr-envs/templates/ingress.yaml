@@ -14,13 +14,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: playground-app-web-api-service
+                name: web-api-service
                 port:
                   number: 9000
           - path: /{{ .Values.namespace }}
             pathType: Prefix
             backend:
               service:
-                name: playground-app-web-ui-service
+                name: web-ui-service
                 port:
                   number: 80
