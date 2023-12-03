@@ -5,9 +5,9 @@ metadata:
   name: ingress-argocd
   namespace: argocd
 spec:
-  ingressClassName: external-nginx
+  ingressClassName: nginx
   rules:
-    - host:
+    - host: ""
       http:
         paths:
           - path: /argocd

@@ -13,7 +13,7 @@ resource "kubernetes_ingress" "ingress_argocd" {
     name      = "ingress-argocd"
     namespace = "argocd"
     annotations = {
-      "kubernetes.io/ingress.class" = "external-nginx"
+      "kubernetes.io/ingress.class" = "nginx"
     }
   }
 

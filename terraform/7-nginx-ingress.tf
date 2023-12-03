@@ -13,16 +13,8 @@ provider "helm" {
   }
 }
 
-provider "kubectl" {
-  host                   = data.azurerm_kubernetes_cluster.this.kube_config[0].host
-  client_key             = base64decode(data.azurerm_kubernetes_cluster.this.kube_config[0].client_key)
-  client_certificate     = base64decode(data.azurerm_kubernetes_cluster.this.kube_config[0].client_certificate)
-  cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.this.kube_config[0].cluster_ca_certificate)
-  load_config_file       = false
-}
-
-resource "helm_release" "external_nginx" {
-  name             = "external"
+resource "helm_release" "nginx" {
+  name             = "nginx"
   repository       = "https://kubernetes.github.io/ingress-nginx"
   chart            = "ingress-nginx"
   namespace        = "ingress"
