@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: playground-app-staging
+spec:
+  destination:
+    namespace: "staging"
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: staging/manifests
+    repoURL: https://github.com/dfal/playground-deployment
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

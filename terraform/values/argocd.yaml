@@ -2,4 +2,3 @@
 configs:
   params:
     server.insecure: true
-    server.rootpath: /argocd

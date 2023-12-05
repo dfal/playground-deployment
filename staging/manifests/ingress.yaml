@@ -5,22 +5,22 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-  name: ingress-{{ .Values.namespace }}
-  namespace: {{ .Values.namespace }}
+  name: ingress-staging
+  namespace: staging
 spec:
   ingressClassName: nginx
   rules:
-    - host:
+    - host: ""
       http:
         paths:
-          - path: /{{ .Values.version }}/api(/|$)(.*)
+          - path: /staging/api(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: web-api-service
                 port:
                   number: 9000
-          - path: /{{ .Values.version }}(/|$)(.*)
+          - path: /staging(/|$)(.*)
             pathType: Prefix
             backend:
               service:
