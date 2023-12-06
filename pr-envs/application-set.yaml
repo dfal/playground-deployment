@@ -32,13 +32,18 @@ spec:
         server: "https://kubernetes.default.svc"
       project: default
       syncPolicy:
-        automated: {}
+        automated:
+          selfHeal: false
       source:
         path: pr-envs
         repoURL: https://github.com/dfal/playground-deployment
         targetRevision: HEAD
         helm:
           parameters:
+            - name: image
+              value: api.image
+            - name: tag
+              value: api.tag
             - name: namespace
               value: "pr-{{branch}}"
             - name: version
