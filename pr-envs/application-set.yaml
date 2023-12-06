@@ -15,6 +15,11 @@ spec:
   template:
     metadata:
       name: "playground-app-{{branch}}-{{number}}"
+      annotations:
+        argocd-image-updater.argoproj.io/write-back-method: argocd
+        argocd-image-updater.argoproj.io/api.update-strategy: name
+        argocd-image-updater.argoproj.io/image-list: "api=hub.docker.com/dfal/playground-app-web-api,front=hub.docker.com/dfal/playground-app-web-ui"
+        argocd-image-updater.argoproj.io/api.allow-tags: "regexp:^({{branch}}|latest)$"
     spec:
       destination:
         namespace: "pr-{{branch}}"

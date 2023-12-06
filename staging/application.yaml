@@ -1,6 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+    argocd-image-updater.argoproj.io/image-list: api=hub.docker.com/dfal/playground-app-web-api:latest,front=hub.docker.com/dfal/playground-app-web-ui:latest
+    argocd-image-updater.argoproj.io/update-strategy: digest
   name: playground-app-staging
 spec:
   destination:
