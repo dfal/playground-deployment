@@ -3,8 +3,11 @@ kind: Application
 metadata:
   annotations:
     argocd-image-updater.argoproj.io/write-back-method: argocd
-    argocd-image-updater.argoproj.io/image-list: api=hub.docker.com/dfal/playground-app-web-api:latest,front=hub.docker.com/dfal/playground-app-web-ui:latest
-    argocd-image-updater.argoproj.io/update-strategy: digest
+    argocd-image-updater.argoproj.io/image-list: api=dfal/playground-app-web-api, front=dfal/playground-app-web-ui
+    argocd-image-updater.argoproj.io/api.helm.image-name: api.image
+    argocd-image-updater.argoproj.io/api.helm.image-tag: api.tag
+    argocd-image-updater.argoproj.io/front.helm.image-name: front.image
+    argocd-image-updater.argoproj.io/front.helm.image-tag: front.tag
   name: playground-app-staging
 spec:
   destination:

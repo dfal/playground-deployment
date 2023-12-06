@@ -14,12 +14,18 @@ spec:
         requeueAfterSeconds: 60
   template:
     metadata:
-      name: "playground-app-{{branch}}-{{number}}"
       annotations:
         argocd-image-updater.argoproj.io/write-back-method: argocd
-        argocd-image-updater.argoproj.io/api.update-strategy: name
-        argocd-image-updater.argoproj.io/image-list: "api=hub.docker.com/dfal/playground-app-web-api,front=hub.docker.com/dfal/playground-app-web-ui"
-        argocd-image-updater.argoproj.io/api.allow-tags: "regexp:^({{branch}}|latest)$"
+        argocd-image-updater.argoproj.io/image-list: api=dfal/playground-app-web-api, front=dfal/playground-app-web-ui
+        argocd-image-updater.argoproj.io/api.update-strategy: latest
+        argocd-image-updater.argoproj.io/api.allow-tags: regexp:^{{branch}}-v.*$
+        argocd-image-updater.argoproj.io/front.update-strategy: latest
+        argocd-image-updater.argoproj.io/front.allow-tags: regexp:^{{branch}}-v.*$
+        argocd-image-updater.argoproj.io/api.helm.image-name: api.image
+        argocd-image-updater.argoproj.io/api.helm.image-tag: api.tag
+        argocd-image-updater.argoproj.io/front.helm.image-name: front.image
+        argocd-image-updater.argoproj.io/front.helm.image-tag: front.tag
+      name: "playground-app-{{branch}}-{{number}}"
     spec:
       destination:
         namespace: "pr-{{branch}}"
