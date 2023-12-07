@@ -1,5 +1,5 @@
 webApi:
-  image: "dfal/playground-app-web-api:v1.1.39"
+  image: "dfal/playground-app-web-api:v1.1.42"
 
 webUi:
   image: "dfal/playground-app-web-ui:v1.1.36"
