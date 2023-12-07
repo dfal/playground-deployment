@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: playground-app-web-api
-          image: dfal/playground-app-web-api:{{.Values.image_tag}}
+          image: dfal/playground-app-web-api:{{.Values.image.tag}}
           env:
             - name: PORT
               value: "9000"
