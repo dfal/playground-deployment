@@ -21,8 +21,7 @@ spec:
         server: "https://kubernetes.default.svc"
       project: default
       syncPolicy:
-        automated:
-          selfHeal: false
+        automated: {}
       source:
         path: pr-envs
         repoURL: https://github.com/dfal/playground-deployment
