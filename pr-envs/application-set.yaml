@@ -14,17 +14,6 @@ spec:
         requeueAfterSeconds: 60
   template:
     metadata:
-      annotations:
-        argocd-image-updater.argoproj.io/write-back-method: argocd
-        argocd-image-updater.argoproj.io/image-list: >
-          api=dfal/playground-app-web-api:{{branch}},
-          front=dfal/playground-app-web-ui:{{branch}}
-        argocd-image-updater.argoproj.io/api.update-strategy: digest
-        argocd-image-updater.argoproj.io/front.update-strategy: digest
-        argocd-image-updater.argoproj.io/api.helm.image-name: api.image
-        argocd-image-updater.argoproj.io/api.helm.image-tag: api.tag
-        argocd-image-updater.argoproj.io/front.helm.image-name: front.image
-        argocd-image-updater.argoproj.io/front.helm.image-tag: front.tag
       name: "playground-app-{{branch}}-{{number}}"
     spec:
       destination:
@@ -40,10 +29,6 @@ spec:
         targetRevision: HEAD
         helm:
           parameters:
-            - name: image
-              value: api.image
-            - name: tag
-              value: api.tag
             - name: namespace
               value: "pr-{{branch}}"
             - name: version
