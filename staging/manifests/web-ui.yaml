@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: playground-app-web-ui
-          image: dfal/playground-app-web-ui:latest
+          image: dfal/playground-app-web-ui@{{.Values.image_tag}}
           resources:
             requests:
               memory: "128Mi"

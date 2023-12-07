@@ -22,4 +22,6 @@ spec:
     repoURL: https://github.com/dfal/playground-deployment
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: false
