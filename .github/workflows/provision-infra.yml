@@ -79,6 +79,6 @@ jobs:
       run: |
         kubectl apply -n argocd -f ${{github.workspace}}/pr-envs/application-set.yaml
 
-    - name: Create ArgoCD Application For Staging Environment
+    - name: Create ArgoCD Application For Permanent Environments
       run: |
-        kubectl apply -n argocd -f ${{github.workspace}}/staging/application.yaml
+        kubectl apply -n argocd -f ${{github.workspace}}/environments/application-set.yaml
