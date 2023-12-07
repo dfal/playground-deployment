@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: playground-app
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+          - env: staging
+  template:
+    metadata:
+      name: "playground-app-{{env}}"
+    spec:
+      destination:
+        namespace: "{{env}}"
+        server: "https://kubernetes.default.svc"
+      project: default
+      syncPolicy:
+        automated: {}
+      source:
+        path: environments
+        repoURL: https://github.com/dfal/playground-deployment
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+            - "{{env}}/values.yaml"
+          parameters:
+            - name: namespace
+              value: "{{env}}"
