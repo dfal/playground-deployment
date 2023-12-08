@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: playground-app-web-ui
-        image: {{ .Values.webUi.image }}
+        image: {{ .Values.webUiImage }}
         resources:
           requests:
             memory: "128Mi"

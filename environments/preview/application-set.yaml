@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: playground-app-preview
+spec:
+  generators:
+    - pullRequest:
+        github:
+          owner: dfal
+          repo: playground-app
+          tokenRef:
+            key: token
+            secretName: github-token
+        requeueAfterSeconds: 60
+  template:
+    metadata:
+      name: "playground-app-{{branch}}-{{number}}"
+    spec:
+      destination:
+        namespace: "pr-{{branch}}"
+        server: "https://kubernetes.default.svc"
+      project: default
+      syncPolicy:
+        automated: {}
+      source:
+        path: environments
+        repoURL: https://github.com/dfal/playground-deployment
+        targetRevision: HEAD
+        helm:
+          parameters:
+            - name: namespace
+              value: "pr-{{branch}}"
+            - name: webApiImage
+              value: dfal/playground-app-web-api:{{branch}}
+            - name: webUiImage
+              value: dfal/playground-app-web-ui:{{branch}}

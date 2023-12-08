@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: playground-app-web-api
-        image: {{ .Values.webApi.image }}
+        image: {{ .Values.webApImage }}
         env:
         - name: PORT
           value: "9000"
