@@ -1,2 +1,2 @@
-webApiImage: "dfal/playground-app-web-api:v1.1.40"
+webApiImage: "dfal/playground-app-web-api:v1.1.64"
 webUiImage: "dfal/playground-app-web-ui:v1.1.38"
