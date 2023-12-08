@@ -28,3 +28,5 @@ spec:
           parameters:
             - name: namespace
               value: "{{env}}"
+            - name: urlPrefix
+              value: "{{env}}"

@@ -30,6 +30,8 @@ spec:
           parameters:
             - name: namespace
               value: "pr-{{branch}}"
+            - name: urlPrefix
+              value: "{{branch}}"
             - name: webApiImage
               value: dfal/playground-app-web-api:{{branch}}
             - name: webUiImage

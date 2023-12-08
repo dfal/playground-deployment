@@ -13,14 +13,14 @@ spec:
     - host:
       http:
         paths:
-          - path: /{{ .Values.namespace }}/api(/|$)(.*)
+          - path: /{{ .Values.urlPrefix }}/api(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: web-api-service
                 port:
                   number: 9000
-          - path: /{{ .Values.namespace }}(/|$)(.*)
+          - path: /{{ .Values.urlPrefix }}(/|$)(.*)
             pathType: Prefix
             backend:
               service:
