@@ -27,12 +27,10 @@ spec:
         repoURL: https://github.com/dfal/playground-deployment
         targetRevision: HEAD
         helm:
+          valueFiles:
+            - "preview/tmp/{{branch}}-{{number}}/values.yaml"
           parameters:
             - name: namespace
               value: "pr-{{branch}}"
             - name: urlPrefix
               value: "{{branch}}"
-            - name: webApiImage
-              value: dfal/playground-app-web-api:{{branch}}
-            - name: webUiImage
-              value: dfal/playground-app-web-ui:{{branch}}
